@@ -151,7 +151,7 @@ static void MAIN_Key_DIGITS(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld) {
 
 /*
 #ifdef ENABLE_MESSENGER
-  hasNewMessage = false;
+  hasNewMessage = 0;
   gUpdateStatus = true;
 	gRequestDisplayScreen = DISPLAY_MAIN;
   gAppToDisplay = APP_MESSENGER;  

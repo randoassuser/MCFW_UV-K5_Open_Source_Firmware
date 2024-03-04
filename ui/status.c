@@ -60,7 +60,7 @@ void UI_DisplayStatus(void) {
 	#else
 		const uint8_t MSG_ICO_POS = 105;
 	#endif
-	if (hasNewMessage) { // New Message indicator	
+	if (hasNewMessage > 0) { // New Message indicator	
     gStatusLine[MSG_ICO_POS + 0] |= 0b00000000;
     gStatusLine[MSG_ICO_POS + 1] |= 0b00111111;
     gStatusLine[MSG_ICO_POS + 2] |= 0b00100011;

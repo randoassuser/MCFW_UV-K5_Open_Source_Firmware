@@ -69,6 +69,12 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep) {
 #endif
   SYSTEM_DelayMs(20);
   switch (Beep) {
+  case BEEP_440HZ_40MS_OPTIONAL:
+    ToneFrequency = 440;
+    break;
+  case BEEP_880HZ_40MS_OPTIONAL:
+    ToneFrequency = 880;
+    break;
   case BEEP_1KHZ_60MS_OPTIONAL:
     ToneFrequency = 1000;
     break;
@@ -97,7 +103,11 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep) {
     BK4819_ExitTxMute();
     Duration = 60;
     break;
-  case BEEP_440HZ_500MS:
+  case BEEP_880HZ_40MS_OPTIONAL:
+  case BEEP_440HZ_40MS_OPTIONAL:
+    BK4819_ExitTxMute();
+    Duration = 40;
+    break;
   default:
     BK4819_ExitTxMute();
     Duration = 500;

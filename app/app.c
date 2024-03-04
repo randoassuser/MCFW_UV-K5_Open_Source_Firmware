@@ -76,6 +76,9 @@
 #include "ui/status.h"
 #include "ui/ui.h"
 
+bool gPlayMSGRing = false;
+uint8_t gPlayMSGRingCount = 0;
+
 // original QS front end register settings
 const uint8_t origLnaShort = 3; //   0dB
 const uint8_t origLna = 2;      // -14dB
@@ -1207,6 +1210,41 @@ void APP_TimeSlice10ms(void) {
 }
 
 void APP_TimeSlice500ms(void) {
+
+  #ifdef ENABLE_MESSENGER_ROGERBEEP_NOTIFICATION   // Messenger Incoming Ring Settings
+	if (gPlayMSGRing) {
+		gPlayMSGRingCount = 2;
+		gPlayMSGRing = false;
+	}
+	if (gPlayMSGRingCount > 0) {
+        AUDIO_PlayBeep(BEEP_440HZ_40MS_OPTIONAL);
+        AUDIO_PlayBeep(BEEP_880HZ_40MS_OPTIONAL);
+        AUDIO_PlayBeep(BEEP_440HZ_40MS_OPTIONAL);
+        AUDIO_PlayBeep(BEEP_880HZ_40MS_OPTIONAL);
+        AUDIO_PlayBeep(BEEP_440HZ_40MS_OPTIONAL);
+        AUDIO_PlayBeep(BEEP_880HZ_40MS_OPTIONAL);
+        AUDIO_PlayBeep(BEEP_440HZ_40MS_OPTIONAL);
+        AUDIO_PlayBeep(BEEP_880HZ_40MS_OPTIONAL);
+        AUDIO_PlayBeep(BEEP_440HZ_40MS_OPTIONAL);
+        AUDIO_PlayBeep(BEEP_880HZ_40MS_OPTIONAL);
+        gPlayMSGRingCount--;
+	}
+
+#endif
+
+#ifdef ENABLE_MESSENGER
+	if (hasNewMessage > 0) {
+		if (hasNewMessage == 1) {
+			hasNewMessage = 2;
+            BK4819_ToggleGpioOut(BK4819_GPIO0_PIN28_GREEN, false);
+            BK4819_ToggleGpioOut(BK4819_GPIO1_PIN29_RED, false);
+		} else if (hasNewMessage == 2) {
+			hasNewMessage = 1;
+            BK4819_ToggleGpioOut(BK4819_GPIO0_PIN28_GREEN, true);
+            BK4819_ToggleGpioOut(BK4819_GPIO1_PIN29_RED, true);
+		}
+	}
+#endif
 
   // Skipped authentic device check
 

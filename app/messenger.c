@@ -50,7 +50,7 @@ MsgStatus msgStatus = READY;
 
 union DataPacket dataPacket;
 
-bool hasNewMessage = false;
+uint8_t hasNewMessage = 0;
 
 uint8_t keyTickCounter = 0;
 
@@ -626,6 +626,8 @@ void MSG_Send(const char txMessage[TX_MSG_LENGTH], bool bServiceMessage)
 			BK4819_DisableDTMF();
 			RADIO_SetTxParameters();
 			SYSTEM_DelayMs(500);
+			BK4819_PlayRoger(2); // Activate Receiver
+			SYSTEM_DelayMs(100);
 			BK4819_ExitTxMute();
 
 			MSG_FSKSendData();
@@ -726,7 +728,7 @@ void MSG_StorePacket(const uint16_t interrupt_bits)
 				moveUP(rxMessage);
 				if (dataPacket.data.payload[0] != 'M' || dataPacket.data.payload[1] != 'S')
 				{
-					snprintf(rxMessage[LAST_LINE], TX_MSG_LENGTH + 2, "? unknown msg format!");
+					snprintf(rxMessage[LAST_LINE], TX_MSG_LENGTH + 2, "? Rx ERR!");
 				}
 				else
 				{
@@ -775,7 +777,8 @@ void MSG_StorePacket(const uint16_t interrupt_bits)
 
 			if (gAppToDisplay != APP_MESSENGER)
 			{
-				hasNewMessage = true;
+				gPlayMSGRing = true;
+				hasNewMessage = 1;
 				gUpdateStatus = true;
 				gUpdateDisplay = true;
 				UI_DisplayStatus();
@@ -796,7 +799,7 @@ void MSG_Init()
 	memset(rxMessage, 0, sizeof(rxMessage));
 	memset(cMessage, 0, sizeof(cMessage));
 	memset(lastcMessage, 0, sizeof(lastcMessage));
-	hasNewMessage = false;
+	hasNewMessage = 0;
 	msgStatus = READY;
 	prevKey = 0;
 	prevLetter = 0;

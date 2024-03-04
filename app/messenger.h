@@ -77,7 +77,7 @@ extern char rxMessage[LAST_LINE + 1][TX_MSG_LENGTH + 2];
 #if defined(ENABLE_MESSENGER_SHOW_RX_FREQ) || defined(ENABLE_MESSENGER_SHOW_RX_TX_FREQ)
 extern char msgFreqInfo[30];
 #endif
-extern bool hasNewMessage;
+extern uint8_t hasNewMessage;
 extern uint8_t keyTickCounter;
 extern MsgStatus msgStatus;
 

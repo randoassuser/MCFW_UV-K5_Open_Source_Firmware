@@ -29,7 +29,7 @@ void APPMENU_ProcessKeys(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld) {
 #if defined (ENABLE_MESSENGER) && defined (ENABLE_SCANLIST)
 #if defined (ENABLE_MESSENGER_SHOW_RX_FREQ) && !defined (ENABLE_MESSENGER_SHOW_RX_TX_FREQ)
   case KEY_2:
-    hasNewMessage = false;
+    hasNewMessage = 0;
     uint32_t frequency = gEeprom.VfoInfo[gEeprom.TX_CHANNEL].pTX->Frequency;
     if ( IsTXAllowed(gEeprom.VfoInfo[gEeprom.TX_CHANNEL].pTX->Frequency) ) {
       frequency = GetScreenF(frequency);
@@ -43,7 +43,7 @@ void APPMENU_ProcessKeys(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld) {
     break;
 #elif defined (ENABLE_MESSENGER_SHOW_RX_TX_FREQ) && !defined (ENABLE_MESSENGER_SHOW_RX_FREQ) || defined (ENABLE_MESSENGER_SHOW_RX_TX_FREQ) && defined (ENABLE_MESSENGER_SHOW_RX_FREQ)
   case KEY_2:
-    hasNewMessage = false;
+    hasNewMessage = 0;
     uint32_t txFrequency = gEeprom.VfoInfo[gEeprom.TX_CHANNEL].pTX->Frequency;
     uint32_t rxFrequency = gEeprom.VfoInfo[gEeprom.RX_CHANNEL].pRX->Frequency;
     
@@ -61,7 +61,7 @@ void APPMENU_ProcessKeys(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld) {
     break;
 #else
   case KEY_2:
-    hasNewMessage = false;    
+    hasNewMessage = 0;    
     gUpdateStatus = true;
     gAppToDisplay = APP_MESSENGER;
     gRequestDisplayScreen = DISPLAY_MAIN;    
@@ -72,7 +72,7 @@ void APPMENU_ProcessKeys(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld) {
 #if defined (ENABLE_MESSENGER) && !defined (ENABLE_SCANLIST)
 #if defined (ENABLE_MESSENGER_SHOW_RX_FREQ) && !defined (ENABLE_MESSENGER_SHOW_RX_TX_FREQ)
   case KEY_1:
-    hasNewMessage = false;
+    hasNewMessage = 0;
     uint32_t frequency = gEeprom.VfoInfo[gEeprom.TX_CHANNEL].pTX->Frequency;
     if ( IsTXAllowed(gEeprom.VfoInfo[gEeprom.TX_CHANNEL].pTX->Frequency) ) {
       frequency = GetScreenF(frequency);
@@ -86,7 +86,7 @@ void APPMENU_ProcessKeys(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld) {
     break;
 #elif defined (ENABLE_MESSENGER_SHOW_RX_TX_FREQ) && !defined (ENABLE_MESSENGER_SHOW_RX_FREQ) || defined (ENABLE_MESSENGER_SHOW_RX_TX_FREQ) && defined (ENABLE_MESSENGER_SHOW_RX_FREQ)
   case KEY_1:
-    hasNewMessage = false;
+    hasNewMessage = 0;
     uint32_t txFrequency = gEeprom.VfoInfo[gEeprom.TX_CHANNEL].pTX->Frequency;
     uint32_t rxFrequency = gEeprom.VfoInfo[gEeprom.RX_CHANNEL].pRX->Frequency;
     
@@ -104,7 +104,7 @@ void APPMENU_ProcessKeys(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld) {
     break;
 #else
   case KEY_1:
-    hasNewMessage = false;    
+    hasNewMessage = 0;    
     gUpdateStatus = true;
     gAppToDisplay = APP_MESSENGER;
     gRequestDisplayScreen = DISPLAY_MAIN;    

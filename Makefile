@@ -10,7 +10,7 @@ ENABLE_AIRCOPY 							:= 0
 # 3856 bytes
 ENABLE_FMRADIO							:= 1
 # 84 bytes
-ENABLE_FLASHLIGHT_SOS       			:= 1
+ENABLE_FLASHLIGHT_SOS       			:= 0
 ENABLE_UART                 			:= 1
 ENABLE_UART_CAT             			:= 0
 # Bause we can cut more... - 4108 bytes
@@ -23,7 +23,7 @@ ENABLE_TX1750 							:= 0
 # Keep this in stock options, and add option in mods for extra rogers
 ENABLE_ROGER_DEFAULT					:= 0
 ENABLE_ROGER_MOTOTRBO					:= 0
-ENABLE_ROGER_TPT						:= 0
+ENABLE_ROGER_TPT						:= 1
 ENABLE_ROGER_MOTOTRBOT40				:= 0
 ENABLE_ROGER_MOTOTRBOTLKRT80			:= 0
 ENABLE_ROGER_ROGERCOBRAAM845			:= 1
@@ -62,11 +62,11 @@ ENABLE_FASTER_CHANNEL_SCAN  				:= 1
 # Enable Timeout beep at the end of timeout - 44 bytes
 ENABLE_TIMEOUT_ROGERBEEP_NOTIFICATION		:= 1
 # CW Modulation
-ENABLE_CW                   				:= 0
+ENABLE_CW                   				:= 1
 
 #=============== EXTRA: MESSENGER ===============# 
 ENABLE_MESSENGER            				:= 1
-ENABLE_MESSENGER_MORE_ONE_LINE				:= 0
+ENABLE_MESSENGER_MORE_ONE_LINE				:= 1
 # 124 bytes
 ENABLE_MESSENGER_SHOW_RX_FREQ				:= 1
 # 124 (+20) bytes
