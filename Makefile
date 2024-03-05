@@ -18,7 +18,7 @@ ENABLE_DTMF_CALLING         			:= 0
 #DTMF REMOTEKILL
 ENABLE_REMOTEKILL						:= 0
 # 1750Hz & 1050Hz FN1 FN2 Tones
-ENABLE_DTMF_SIDETONES				    := 1
+ENABLE_DTMF_SIDETONES				    := 0
 ENABLE_TX1750 							:= 0
 # Keep this in stock options, and add option in mods for extra rogers
 ENABLE_ROGER_DEFAULT					:= 0
@@ -72,7 +72,7 @@ ENABLE_MESSENGER_SHOW_RX_FREQ				:= 1
 # 124 (+20) bytes
 ENABLE_MESSENGER_SHOW_RX_TX_FREQ			:= 0
 # 156 bytes
-ENABLE_MESSENGER_UART						:= 1
+ENABLE_MESSENGER_UART						:= 0
 # 3408 bytes
 ENABLE_MESSENGER_ENCRYPTION             	:= 1
 # 140 bytes

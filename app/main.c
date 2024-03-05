@@ -314,8 +314,17 @@ static void MAIN_Key_MENU(bool bKeyPressed, bool bKeyHeld) {
   if (bKeyHeld && bKeyPressed) {
     // LONG PRESS
     if (!gInputBoxIndex) {
-      gFlagRefreshSetting = true;
-      gRequestDisplayScreen = DISPLAY_MENU;
+      hasNewMessage = 0;
+      uint32_t frequency = gEeprom.VfoInfo[gEeprom.TX_CHANNEL].pTX->Frequency;
+      if ( IsTXAllowed(gEeprom.VfoInfo[gEeprom.TX_CHANNEL].pTX->Frequency) ) {
+        frequency = GetScreenF(frequency);
+        sprintf(msgFreqInfo, "%u.%05u Mhz", frequency / 100000, frequency % 100000);
+      } else {
+        sprintf(msgFreqInfo, "TX DISABLED");
+      }
+      gUpdateStatus = true;
+      gAppToDisplay = APP_MESSENGER;
+      gRequestDisplayScreen = DISPLAY_MAIN;
     }
 
     return;
